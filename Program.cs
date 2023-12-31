@@ -2,6 +2,7 @@
 using DiscordBotTutorialExampleProject.Config;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
@@ -39,7 +40,9 @@ namespace DiscordBotTutorialExampleProject
             });
 
             //4. Set up the Ready Event-Handler
+            //Event-Handlers for the Client go here
             Client.Ready += Client_Ready;
+            Client.GuildMemberAdded += Client_GuildMemberAdded;
 
             //5. Create the Command Configuration
             var commandsConfig = new CommandsNextConfiguration
@@ -63,6 +66,20 @@ namespace DiscordBotTutorialExampleProject
             await Client.ConnectAsync();
             //Make sure you delay by -1 to keep the bot running forever
             await Task.Delay(-1);
+        }
+
+        private static async Task Client_GuildMemberAdded(DiscordClient sender, GuildMemberAddEventArgs args)
+        {
+            var defaultChannel = args.Guild.GetDefaultChannel();
+
+            var welcomeEmbed = new DiscordEmbedBuilder()
+            {
+                Color = DiscordColor.Gold,
+                Title = $"Welcome {args.Member.Username} to the server",
+                Description = "Hope you enjoy your stay, please read the rules"
+            };
+
+            await defaultChannel.SendMessageAsync(embed: welcomeEmbed);
         }
 
         private static Task Client_Ready(DiscordClient sender, ReadyEventArgs args)
