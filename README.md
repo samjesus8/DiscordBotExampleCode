@@ -14,10 +14,10 @@
 
 - The tutorial series, made by `samjesus8`, contains the fundamental learning material you need to know in order to know how DSharpPlus functions
 
-- Head over to the tutorial [by clicking on this link](Add the 2024 playlist here)
+- Head over to the tutorial [by clicking on this link](https://www.youtube.com/playlist?list=PLcpUxmcrEm_A819eppTt09S6EGVH99TSV)
 
     <p align="center">
-        <img src="https://media.discordapp.net/attachments/1020110665161113610/1142802011885150228/image.png" style="border:5px solid black" />
+        <img src="https://media.discordapp.net/attachments/1020110665161113610/1196549014947106836/image.png?ex=65b8081b&is=65a5931b&hm=5f49464c668a53aaa80985da32b0f872b42af245b834337880741d959636255a&=&format=webp&quality=lossless" style="border:5px solid black" />
     </p>
 
 ## :arrow_right: Developer Expectations
