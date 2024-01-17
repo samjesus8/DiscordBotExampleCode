@@ -45,6 +45,7 @@ namespace DiscordBotTutorialExampleProject
             Client.Ready += Client_Ready;
             Client.GuildMemberAdded += Client_GuildMemberAdded;
             Client.ComponentInteractionCreated += Client_ComponentInteractionCreated;
+            Client.ModalSubmitted += Client_ModalSubmitted;
 
             //5. Create the Command Configuration
             var commandsConfig = new CommandsNextConfiguration
@@ -63,7 +64,7 @@ namespace DiscordBotTutorialExampleProject
 
             //7. Register your Command Classes
             Commands.RegisterCommands<Basics>();
-            Commands.RegisterCommands<InteractionComponents>();
+            Commands.RegisterCommands<DiscordComponentExamples>();
 
             //Registering Slash Commands
             slashCommandsConfig.RegisterCommands<BasicSL>();
@@ -74,6 +75,15 @@ namespace DiscordBotTutorialExampleProject
 
             //Make sure you delay by -1 to keep the bot running forever
             await Task.Delay(-1);
+        }
+
+        private static async Task Client_ModalSubmitted(DiscordClient sender, ModalSubmitEventArgs args)
+        {
+            if (args.Interaction.Type == InteractionType.ModalSubmit && args.Interaction.Data.CustomId == "testModal")
+            {
+                var values = args.Values;
+                await args.Interaction.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"{args.Interaction.User.Username} submitted a modal with the input {values.Values.First()}"));
+            }
         }
 
         private static async Task Client_ComponentInteractionCreated(DiscordClient sender, ComponentInteractionCreateEventArgs args)
@@ -111,6 +121,56 @@ namespace DiscordBotTutorialExampleProject
 
                     await args.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder().AddEmbed(calculatorCommandsEmbed));
                     break;
+                case "modalButton":
+                    var modal = new DiscordInteractionResponseBuilder()
+                        .WithTitle("Test Modal")
+                        .WithCustomId("testModal")
+                        .AddComponents(new TextInputComponent("Random", "randomTextBox", "Type something here"));
+
+                    await args.Interaction.CreateResponseAsync(InteractionResponseType.Modal, modal);
+                    break;
+            }
+
+            //Drop-Down Events (You can change this to a SWITCH block!!!!)
+            if (args.Id == "dropDownList" && args.Interaction.Data.ComponentType == ComponentType.StringSelect)
+            {
+                var options = args.Values;
+                foreach (var option in options)
+                {
+                    switch (option)
+                    {
+                        case "option1":
+                            await args.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder().WithContent($"{args.User.Username} has selected Option 1"));
+                            break;
+
+                        case "option2":
+                            await args.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder().WithContent($"{args.User.Username} has selected Option 2"));
+                            break;
+
+                        case "option3":
+                            await args.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder().WithContent($"{args.User.Username} has selected Option 3"));
+                            break;
+                    }
+                }
+            }
+            else if (args.Id == "channelDropDownList")
+            {
+                var options = args.Values;
+                foreach (var channel in options)
+                {
+                    var selectedChannel = await Client.GetChannelAsync(ulong.Parse(channel));
+                    await args.Interaction.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"{args.User.Username} selected the channel with name {selectedChannel.Name}"));
+                }
+            }
+
+            else if (args.Id == "mentionDropDownList")
+            {
+                var options = args.Values;
+                foreach (var user in options)
+                {
+                    var selectedUser = await Client.GetUserAsync(ulong.Parse(user));
+                    await args.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder().WithContent($"{selectedUser.Mention} was mentionned"));
+                }
             }
         }
 
