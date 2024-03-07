@@ -1,6 +1,6 @@
 # C# Discord Bot Example Repo (DSharpPlus)
 
-![image](https://media.discordapp.net/attachments/1020110665161113610/1151881716894543893/discord_bot_tutorial_logo_2023.png?ex=65844672&is=6571d172&hm=3fc490459b86e2d2db62539ec18185113f192879c0ac833ee6b037d34713d212&=&format=webp&quality=lossless)
+![image](https://imgur.com/orKLJEx.png)
 
 ## :wave: Welcome
 
@@ -17,7 +17,7 @@
 - Head over to the tutorial [by clicking on this link](https://www.youtube.com/playlist?list=PLcpUxmcrEm_A819eppTt09S6EGVH99TSV)
 
     <p align="center">
-        <img src="https://media.discordapp.net/attachments/1020110665161113610/1196549014947106836/image.png?ex=65b8081b&is=65a5931b&hm=5f49464c668a53aaa80985da32b0f872b42af245b834337880741d959636255a&=&format=webp&quality=lossless" style="border:5px solid black" />
+        <img src="https://imgur.com/OmdLEsh.png" style="border:5px solid black" />
     </p>
 
 ## :arrow_right: Developer Expectations
@@ -37,6 +37,13 @@
     - [.NET Framework 4.8](https://github.com/samjesus8/CSharp-Discord-Bot-Template)
     - [.NET 7](https://github.com/samjesus8/CSharp-Discord-Bot-Template-NET7)
     - [.NET 8](https://github.com/samjesus8/CSharp-Discord-Bot-Template-NET8)
+
+## :arrow_right: Other repositories
+
+- Some repositories are separate from this main repository to eliminate clutter of code in this repository. This is so that the viewer has less time trying to separate certain parts of the code to figure out what is going on
+    - [Database-Discord-Bot](https://github.com/samjesus8/Database-Discord-Bot) (from episodes #11 - 14)
+    - [Discord-Bot-Profile-System](https://github.com/samjesus8/Discord-Bot-Profile-System) (from [MAKING A DISCORD BOT IN C# | MAKING A PROFILE SYSTEM](https://youtu.be/KitKK_yZyCU?si=XMY5Si78I1EbsnWE))
+    - [Support-Bot](https://github.com/samjesus8/Support-Bot) (from [MAKING A SUPPORT TICKET SYSTEM IN A DISCORD BOT (3 Part Series)](https://youtu.be/kmHSoMowGM4?si=T9jq0-2kmiA77Em5))
 
 ## Help & Support
 
